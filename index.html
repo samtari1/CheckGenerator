@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Check Generator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="editor" aria-label="Check details form">
+        <h1>Printable Check Generator</h1>
+        <p class="subheading">Fill in details, preview, then print.</p>
+
+        <form id="check-form" autocomplete="off">
+          <div class="field-grid">
+            <label>
+              Background Opacity
+              <input type="range" id="bgOpacity" min="0.05" max="1" step="0.01" value="0.25" />
+            </label>
+
+            <label>
+              Content Scale
+              <input type="range" id="contentScale" min="0.85" max="1" step="0.01" value="0.93" />
+            </label>
+            
+            <label>
+              Payee
+              <input type="text" id="payee" placeholder="John Doe" value="Quanpeng Yang" required />
+            </label>
+
+            <label>
+              Date
+              <input type="date" id="date" required />
+            </label>
+
+            <label>
+              Amount (USD)
+              <input type="number" id="amount" min="0" step="0.01" placeholder="125.50" required />
+            </label>
+
+            <label>
+              Memo
+              <input type="text" id="memo" placeholder="Invoice #1042" value="Deposit"/>
+            </label>
+
+            <label>
+              Bank Name
+              <input type="text" id="bankName" placeholder="CHASE" required />
+            </label>
+
+            <label>
+              Account Holder
+              <input type="text" id="accountHolder" placeholder="Jane Smith" value="Quanpeng Yang" required />
+            </label>
+
+            <label>
+              Routing Number
+              <input type="text" id="routing" inputmode="numeric" maxlength="9" placeholder="123456789" value="12345" required />
+            </label>
+
+            <label>
+              Account Number
+              <input type="text" id="account" inputmode="numeric" maxlength="17" placeholder="000123456789" value="54321" required />
+            </label>
+
+            <label>
+              Check Number
+              <input type="text" id="checkNumber" inputmode="numeric" maxlength="6" placeholder="1001" required />
+            </label>
+
+            <label>
+              Batch Size
+              <input type="number" id="batchSize" min="1" max="100" step="1" value="3" required />
+            </label>
+
+            <label>
+              Checks Per Page
+              <select id="checksPerPage">
+                <option value="1">1 (full size)</option>
+                <option value="3" selected>3 (stacked)</option>
+                <option value="4">4 (1 column x 4 rows)</option>
+              </select>
+            </label>
+
+            <label>
+              Duplex Back Alignment
+              <select id="duplexBackMode">
+                <option value="normal" selected>Normal</option>
+                <option value="rotate180">Rotate back side 180°</option>
+              </select>
+            </label>
+
+            <label>
+              Address
+              <input type="text" id="address" placeholder="123 Main St, City, ST 12345" value="281 T Johnson Rd, Carthage" />
+            </label>
+
+            <label>
+              Phone
+              <input type="text" id="phone" placeholder="(555) 123-4567" value="(202)294-6849" />
+            </label>
+
+            <label>
+              Check Background
+              <select id="checkBg">
+                <option value="">None</option>
+                <option value="images/bg_1.jpg" selected>Background 1</option>
+                <option value="images/bg_2.jpg">Background 2</option>
+              </select>
+            </label>
+
+
+
+
+          </div>
+
+          <div class="actions">
+            <button type="button" id="today-btn">Use Today</button>
+            <button type="reset">Reset</button>
+            <button type="button" id="print-btn" class="primary">Print Batch</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="preview-wrap" aria-label="Check preview">
+        <p class="subheading">Each check generates two pages: front and back.</p>
+        <div id="batch-preview" class="batch-preview"></div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
