@@ -699,22 +699,22 @@ button.primary {
 .check.front {
   position: relative;
   overflow: hidden;
-  padding: 36px 36px;
+  padding: 36px 36px !important;
   box-sizing: border-box;
+}
+.check.front .check-content {
+  position: relative;
+  z-index: 2;
+  transform: scale(var(--content-scale, 0.93));
+  transform-origin: center;
 }
 .check-bg-overlay {
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  opacity: 0.18;
+  opacity: var(--bg-opacity, 0.18);
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
-}
-.check.front > *:not(.check-bg-overlay) {
-  position: relative;
-  z-index: 2;
-  transform: scale(0.93);
-  transform-origin: center;
 }
