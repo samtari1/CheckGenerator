@@ -1,5 +1,6 @@
 const form = document.getElementById('check-form');
 const todayBtn = document.getElementById('today-btn');
+const clearDateBtn = document.getElementById('clear-date-btn');
 const printBtn = document.getElementById('print-btn');
 const batchPreview = document.getElementById('batch-preview');
 
@@ -356,6 +357,11 @@ function setTodayDate() {
   updatePreview();
 }
 
+function clearDate() {
+  fields.date.value = '';
+  updatePreview();
+}
+
 Object.values(fields).forEach((input) => {
   input.addEventListener('input', updatePreview);
   if (input.tagName === 'SELECT') {
@@ -368,12 +374,12 @@ form.addEventListener('reset', () => {
 });
 
 todayBtn.addEventListener('click', setTodayDate);
+clearDateBtn.addEventListener('click', clearDate);
 printBtn.addEventListener('click', () => {
   updatePreview();
   window.print();
 });
 
-setTodayDate();
 fields.bankName.value = 'CHASE';
 fields.payee.value = 'Quanpeng Yang';
 fields.accountHolder.value = 'Quanpeng Yang';

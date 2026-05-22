@@ -360,8 +360,9 @@ button.primary {
 
 .micr {
   align-self: end;
-  border-top: 1px dashed #374151;
-  padding-top: 8px;
+  border-top: 1.5px dashed #374151;
+  padding-top: 18px;
+  margin-top: 10px;
   letter-spacing: 0.02em;
   font-size: 1.6rem;
   line-height: 1;
@@ -382,14 +383,18 @@ button.primary {
   white-space: nowrap;
 }
 
+
 .check.back {
-  max-width: 850px;
+  width: 100%; /* or a specific value like 850px or 7.9in */
+  /* max-width: 850px; */
   aspect-ratio: 3.25 / 1.4;
   grid-template-rows: 1fr;
   justify-self: stretch;
   position: relative;
   overflow: hidden;
-  padding: 18px;
+  padding: 36px 36px !important;
+  box-sizing: border-box;
+  margin-top: -16px;
 }
 
 .check.back.duplex-rotate {
@@ -398,7 +403,7 @@ button.primary {
 }
 
 .back-portrait-layout {
-  width: calc((100% - 36px) / var(--check-frame-ratio));
+  width: calc((100% - 30px) / var(--check-frame-ratio));
   height: calc(100% - 36px);
   margin-top: 0;
   margin-left: 0;
@@ -416,13 +421,14 @@ button.primary {
 }
 
 .endorsement-box {
-  border: 1px dashed #374151;
+  /* border: 1px dashed #374151; */
   padding: 14px;
   display: grid;
   gap: 18px;
   align-content: start;
   height: 100%;
-  overflow: hidden;
+  width: 100%;
+  /* overflow: hidden; */
 }
 
 .endorsement-box p {
