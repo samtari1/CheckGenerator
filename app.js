@@ -21,7 +21,8 @@ const fields = {
   address: document.getElementById('address'),
   checkBg: document.getElementById('checkBg'),
   contentScale: document.getElementById('contentScale'),
-  bgOpacity: document.getElementById('bgOpacity')
+  bgOpacity: document.getElementById('bgOpacity'),
+  micrSpacing: document.getElementById('micrSpacing')
 };
 
 function onlyDigits(value) {
@@ -143,10 +144,12 @@ function chunkArray(items, size) {
   return chunks;
 }
 
-function buildFrontMarkup({ bankName, accountHolder, checkNumber, dateText, amount, payee, amountWords, memo, routing, account, address, phone, checkBg, contentScale, bgOpacity }) {
+function buildFrontMarkup({ bankName, accountHolder, checkNumber, dateText, amount, payee, amountWords, memo, routing, account, address, phone, checkBg, contentScale, bgOpacity, micrSpacing }) {
   const bgStyle = checkBg ? `position: relative; z-index: 0;` : '';
   const overlayStyle = checkBg ? `position: absolute; inset: 0; z-index: 1; pointer-events: none; background: url('${checkBg}') center/cover no-repeat; opacity: ${bgOpacity || 0.18};` : '';
   const scale = contentScale || 0.93;
+  const micrGap = Number.parseInt(micrSpacing, 10);
+  const safeMicrGap = Number.isFinite(micrGap) ? `${micrGap}px` : '28px';
   return `
     <article class="check front" aria-label="Check front" style="${bgStyle}">
       ${checkBg ? `<div class="check-bg-overlay" style="${overlayStyle}"></div>` : ''}
@@ -189,7 +192,7 @@ function buildFrontMarkup({ bankName, accountHolder, checkNumber, dateText, amou
           </div>
         </div>
 
-        <footer class="micr" aria-label="MICR line">
+        <footer class="micr" aria-label="MICR line" style="--micr-gap: ${safeMicrGap};">
           <span>⑆${escapeHtml(routing)}⑆</span>
           <span>${escapeHtml(account)}⑈</span>
           <span>${escapeHtml(checkNumber)}</span>
@@ -232,6 +235,7 @@ function updatePreview() {
   const phone = fields.phone.value.trim();
   const dateText = formatDateISOToUS(fields.date.value);
   const amountWords = amount ? amountToCheckWords(amount) : "";
+  const micrSpacing = fields.micrSpacing.value;
 
   const safePayee = payee || `:`;
   const safeMemo = memo || ``;
@@ -269,7 +273,8 @@ function updatePreview() {
                 phone,
                 checkBg: fields.checkBg.value,
                 contentScale: fields.contentScale.value,
-                bgOpacity: fields.bgOpacity.value
+                bgOpacity: fields.bgOpacity.value,
+                micrSpacing
               })}
             </div>
           </div>
@@ -308,7 +313,8 @@ function updatePreview() {
             phone,
             checkBg: fields.checkBg.value,
             contentScale: fields.contentScale.value,
-            bgOpacity: fields.bgOpacity.value
+            bgOpacity: fields.bgOpacity.value,
+            micrSpacing
           })}
         </div>
       `);

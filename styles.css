@@ -375,8 +375,10 @@ button.primary {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: geometricPrecision;
-  display: flex;
-  justify-content: space-between;
+  display: inline-grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  column-gap: var(--micr-gap, 28px);
 }
 
 .micr span {
